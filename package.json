@@ -1,0 +1,20 @@
+{
+  "name": "remote-workplace",
+  "version": "1.0.0",
+  "description": "Chat app and task management tool for remote work",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "author": "Obiagba Mary Ifeoma",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  }
+}
