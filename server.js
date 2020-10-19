@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
+const messageFormat = require('./utils/messages');
 
 const app = express();
 const server = http.createServer(app);
@@ -9,6 +10,8 @@ const io = socketio(server);
 
 //Setting folder containing static files
 app.use(express.static(path.join(__dirname, 'public')));
+
+const botName = 'Chat Bot';
 
 io.on('connection', socket => {
 
@@ -18,10 +21,10 @@ io.on('connection', socket => {
 
     //1. For emit to the single user that is connecting
     //e.g. Welcoming current user to the platform
-    socket.emit('message', 'Welcome to Remote Workplace chat');
+    socket.emit('message', messageFormat(botName, 'Welcome to Remote Workplace chat'));
 
     //2. For all users except for the one that is connecting
-    socket.broadcast.emit('message', 'A user has joined the chat');
+    socket.broadcast.emit('message', messageFormat(botName, 'A user has joined the chat'));
 
     /*3. For broadcast to all users
         
@@ -31,7 +34,7 @@ io.on('connection', socket => {
 
     //Runs when user disconnects
     socket.on('disconnect', () => {
-        io.emit('message', 'A user has left the chat');
+        io.emit('message', messageFormat(botName, 'A user has left the chat'));
     });
 
     //Listen for chatMessage from client
@@ -39,7 +42,7 @@ io.on('connection', socket => {
         //console.log(msg);
 
         //emit back to client (all users)
-        io.emit('message', msg);
+        io.emit('message', messageFormat('ADD USERNAME HERE', msg));
 
     });
 

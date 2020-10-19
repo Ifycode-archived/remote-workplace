@@ -5,7 +5,7 @@ const socket = io();
 
 //catch any message sent from server
 socket.on('message', message => {
-    //console.log(message);
+    console.log(message);
 
     outputMessage(message);
 
@@ -15,18 +15,14 @@ socket.on('message', message => {
 
 chatForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    //e.target targets the current element
-    //elements.msg gets the input field with id = msg
     
     //Get input value
     const msg = e.target.elements.msg.value;
 
-    //console.log(msg);
-
     //emit msg to server
     socket.emit('chatMessage', msg);
 
+    //clear the input
     e.target.elements.msg.value = '';
     e.target.elements.msg.focus();
 
@@ -37,8 +33,8 @@ function outputMessage(message) {
     const div = document.createElement('div');
     div.classList.add('message');
     div.innerHTML = `
-        <p class="meta"> Mary <span>6:49pm</span></p>
-        <p class="text">${message}</p>
+        <p class="meta"> ${message.username} <span>${message.time}</span></p>
+        <p class="text">${message.text}</p>
     `;
 
     chatMessages.appendChild(div);
