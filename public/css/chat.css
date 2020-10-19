@@ -95,7 +95,8 @@ a {
 	padding: 10px;
 	margin-bottom: 15px;
 	background-color: var(--light-color);
-	border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 1px grey;
 }
 
 .chat-messages .message .meta {
@@ -125,6 +126,8 @@ a {
 	height: 40px;
 	flex: 1;
 }
+
+
 
 /* Join Page */
 .join-container {

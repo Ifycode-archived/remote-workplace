@@ -11,8 +11,6 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', socket => {
-    //testing connection
-    console.log('New WS Connection...');
 
     /*==================================
     Setting up connection from server to client side
@@ -34,6 +32,15 @@ io.on('connection', socket => {
     //Runs when user disconnects
     socket.on('disconnect', () => {
         io.emit('message', 'A user has left the chat');
+    });
+
+    //Listen for chatMessage from client
+    socket.on('chatMessage', msg => {
+        //console.log(msg);
+
+        //emit back to client (all users)
+        io.emit('message', msg);
+
     });
 
 });
