@@ -11,6 +11,10 @@ html, body {
   background: #fdfdfd;
 }
 
+body {
+    height: fit-content;
+}
+
 body > * {
     width: fit-content;
     margin: 0 auto;
@@ -46,6 +50,12 @@ form button {
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
+}
+
+footer > * {
+    margin: 30px 0;
+    color: #aaaaaa;
+    font-size: 1.1em;
 }
 
 
