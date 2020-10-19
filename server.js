@@ -3,7 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const messageFormat = require('./utils/messages');
-const { userJoin, getCurrentUser } = require('./utils/users');
+const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -25,8 +25,9 @@ io.on('connection', socket => {
         //For emit to the single user that is connecting
         socket.emit('message', messageFormat(botName, 'Welcome to Remote Workplace chat'));
 
-        //Broadcast to room
+        //Broadcast to room when user joins chat
         socket.broadcast.to(user.room).emit('message', messageFormat(botName, `<b>${user.username}</b> joined chat`));
+    
     });
 
     //Listen for chatMessage from client
@@ -40,7 +41,11 @@ io.on('connection', socket => {
 
     //Runs when user disconnects
     socket.on('disconnect', () => {
-        io.emit('message', messageFormat(botName, 'A user has left the chat'));
+        const user = userLeave(socket.id);
+
+        if (user) {
+            io.to(user.room).emit('message', messageFormat(botName, `<b>${user.username}</b> has left the chat`));
+        }
     });
 
 });
