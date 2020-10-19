@@ -3,6 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const messageFormat = require('./utils/messages');
+const { userJoin, getCurrentUser } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -15,35 +16,31 @@ const botName = 'Chat Bot';
 
 io.on('connection', socket => {
 
-    /*==================================
-    Setting up connection from server to client side
-    ====================================*/
+    //Add welcome and broadcast inside the joinChatRoom since we're now dealing with rooms
+    socket.on('joinChatRoom', ({username, room}) => {
+    
+        const user = userJoin(socket.id, username, room);
+        socket.join(user.room);
 
-    //1. For emit to the single user that is connecting
-    //e.g. Welcoming current user to the platform
-    socket.emit('message', messageFormat(botName, 'Welcome to Remote Workplace chat'));
+        //For emit to the single user that is connecting
+        socket.emit('message', messageFormat(botName, 'Welcome to Remote Workplace chat'));
 
-    //2. For all users except for the one that is connecting
-    socket.broadcast.emit('message', messageFormat(botName, 'A user has joined the chat'));
-
-    /*3. For broadcast to all users
-        
-        io.emit();
-
-    */
-
-    //Runs when user disconnects
-    socket.on('disconnect', () => {
-        io.emit('message', messageFormat(botName, 'A user has left the chat'));
+        //Broadcast to room
+        socket.broadcast.to(user.room).emit('message', messageFormat(botName, `<b>${user.username}</b> joined chat`));
     });
 
     //Listen for chatMessage from client
     socket.on('chatMessage', msg => {
-        //console.log(msg);
-
+        const user = getCurrentUser(socket.id);
+        
         //emit back to client (all users)
-        io.emit('message', messageFormat('ADD USERNAME HERE', msg));
+        io.to(user.room).emit('message', messageFormat(`<b>${user.username}</b>`, msg));
 
+    });
+
+    //Runs when user disconnects
+    socket.on('disconnect', () => {
+        io.emit('message', messageFormat(botName, 'A user has left the chat'));
     });
 
 });
