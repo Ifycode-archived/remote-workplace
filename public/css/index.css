@@ -1,1 +1,173 @@
-/*index.css*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html, body {
+    height: 100vh;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #152442;
+    color: #ffffff;
+    display: grid;
+    grid-template-rows: 1fr 50px;
+}
+
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+main {
+   
+}
+
+.welcome {
+    position: relative;
+}
+
+.welcome button {
+    font-family: 'Quicksand', sans-serif;
+    width: 350px;
+    background: #101A2F;
+    color: goldenrod;
+    font-size: 1.6em;
+    font-weight: 500;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.chat-svg {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+}
+
+svg {
+    
+}
+
+.welcome .project-name {
+    font-weight: 600;
+    font-size: 3.2em;
+    margin: 0 0 10px 0;
+}
+
+.welcome .project-description {
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 1.4em;
+}
+
+.form-control {
+    /*background: white;
+    color: #152442;*/
+}
+
+.form-control > * {
+    display: block;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+input {
+    background:#d4d4d4;
+    margin: 0 0 15px 0;
+    padding: 5px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+input:focus {
+    background: #101A2F;
+    color: goldenrod;
+}
+
+label {
+    margin: 0 0 5px 0;
+}
+
+.form-control button {
+    font-family: 'Quicksand', sans-serif;
+    margin: 30px 0 50px 0;
+    padding: 10px 20px;
+    color:#ffffff;
+    background: #2552AA;
+    border: 1px solid rgb(212, 212, 212, 0.4);
+    box-shadow: 0px 0px 5px #233C6C;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.form-control .register-workspace {
+    font-size: 0.9em;
+}
+
+footer {
+    text-align: center;
+}
+
+a {
+    color: goldenrod;
+    background: #101A2F;
+    text-decoration: none;
+    padding: 2px 5px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+@media screen and (min-width: 850px) {
+    main {
+        display: grid;
+        grid-gap: 30px 30px;
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    main > * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 150px 0 0 0;
+    }
+
+    .welcome .project-description {
+        font-size: 1.2em;
+        text-align: center;
+        max-width: 550px;
+    }
+
+    .welcome {
+        grid-column: 1/ span 7;
+    }
+
+    .login {
+        grid-column: 8/ span 5;
+    }
+
+}
+
+/*
+Attribution for connect:
+Icons made by <a href="https://www.flaticon.com/authors/alfredo-hernandez" title="Alfredo Hernandez">Alfredo Hernandez</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
+*/
