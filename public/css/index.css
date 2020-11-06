@@ -15,8 +15,6 @@ body {
     font-family: 'Quicksand', sans-serif;
     background: #152442;
     color: #ffffff;
-    display: grid;
-    grid-template-rows: 1fr 50px;
 }
 
 body {
@@ -24,9 +22,15 @@ body {
     margin: 0 auto;
 }
 
+button {
+    cursor: pointer;
+}
+
+/*
 main {
    
 }
+*/
 
 .welcome {
     position: relative;
@@ -39,7 +43,7 @@ main {
     color: goldenrod;
     font-size: 1.6em;
     font-weight: 500;
-    margin: 20px;
+    margin: 40px 0 60px 0;
     padding: 20px;
     border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -61,13 +65,20 @@ svg {
 .welcome .project-name {
     font-weight: 600;
     font-size: 3.2em;
-    margin: 0 0 10px 0;
+    margin: 100px 0 10px 0;
 }
 
 .welcome .project-description {
     font-size: 1.2em;
     text-align: center;
     line-height: 1.4em;
+    max-width: 550px;
+}
+
+main > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form-control {
@@ -83,6 +94,7 @@ svg {
 
 input {
     background:#d4d4d4;
+    width: 350px;
     margin: 0 0 15px 0;
     padding: 5px;
     border-radius: 4px;
@@ -122,6 +134,7 @@ label {
 
 footer {
     text-align: center;
+    padding: 40px 0;
 }
 
 a {
@@ -136,7 +149,12 @@ a {
     -o-border-radius: 4px;
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 1000px) {
+    body {
+        display: grid;
+        grid-template-rows: 1fr 50px;
+    }
+    
     main {
         display: grid;
         grid-gap: 30px 30px;
@@ -148,6 +166,12 @@ a {
         flex-direction: column;
         align-items: center;
         margin: 150px 0 0 0;
+    }
+
+    .welcome .project-name {
+        font-weight: 600;
+        font-size: 3.2em;
+        margin: 0 0 10px 0;
     }
 
     .welcome .project-description {
@@ -162,6 +186,32 @@ a {
 
     .login {
         grid-column: 8/ span 5;
+    }
+
+    .welcome button {
+        font-family: 'Quicksand', sans-serif;
+        width: 350px;
+        background: #101A2F;
+        color: goldenrod;
+        font-size: 1.6em;
+        font-weight: 500;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+    }
+
+    input {
+        background:#d4d4d4;
+        width: unset;
+    }
+
+    footer {
+        text-align: center;
+        padding: 0;
     }
 
 }
